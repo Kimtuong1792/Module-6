@@ -1,36 +1,38 @@
-package com.example.benhvien.model;
+package com.example.benhvien.dto;
 
-import javax.persistence.*;
+import com.example.benhvien.model.BenhNhan;
 
-@Entity
-public class BenhAn {
-    @Id
+import javax.validation.constraints.NotBlank;
+
+public class BenhAnDto {
+
     private String id;
+    @NotBlank(message = "Không được để trống")
     private String ngayBatDau;
+    @NotBlank(message = "Không được để trống")
     private String ngayKetThuc;
+    @NotBlank(message = "Không được để trống")
     private String liDo;
+    @NotBlank(message = "Không được để trống")
     private String dieuTri;
+    @NotBlank(message = "Không được để trống")
     private String bacSi;
+    @NotBlank(message = "Không được để trống")
+    private BenhNhan benhNhan;
 
-
-    @ManyToOne
-    @JoinColumn(name = "ma_benh_nhan", referencedColumnName = "id")
-    private BenhNhan maBenhNhan;
-
-
-    public BenhAn() {
+    public BenhAnDto() {
     }
 
-    public BenhAn(String id, BenhNhan maBenhNhan,
-                  String ngayBatDau, String ngayKetThuc,
-                  String liDo, String dieuTri, String bacSi) {
+    public BenhAnDto(String id, String ngayBatDau,
+                     String ngayKetThuc, String liDo,
+                     String dieuTri, String bacSi, BenhNhan benhNhan) {
         this.id = id;
-        this.maBenhNhan = maBenhNhan;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
         this.liDo = liDo;
         this.dieuTri = dieuTri;
         this.bacSi = bacSi;
+        this.benhNhan = benhNhan;
     }
 
     public String getId() {
@@ -39,14 +41,6 @@ public class BenhAn {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public BenhNhan getMaBenhNhan() {
-        return maBenhNhan;
-    }
-
-    public void setMaBenhNhan(BenhNhan maBenhNhan) {
-        this.maBenhNhan = maBenhNhan;
     }
 
     public String getNgayBatDau() {
@@ -87,5 +81,13 @@ public class BenhAn {
 
     public void setBacSi(String bacSi) {
         this.bacSi = bacSi;
+    }
+
+    public BenhNhan getBenhNhan() {
+        return benhNhan;
+    }
+
+    public void setBenhNhan(BenhNhan benhNhan) {
+        this.benhNhan = benhNhan;
     }
 }
